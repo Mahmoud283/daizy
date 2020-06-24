@@ -1,113 +1,98 @@
-var typed6 = new Typed('.element', {
-	strings: ['front-end', 'and', 'Ui developer'],
-	typeSpeed: 200,
-	backSpeed: 50,
-	loop: true
-});
-var typed7 = new Typed('.element2', {
-	strings: ['Your Web site'],
-	typeSpeed: 200,
-	backSpeed: 50,
-	loop: true
-});
-AOS.init();
+$(document).ready(function(){
 
-$(".tab ul li ").click(function(){
-$(this).addClass("activeX");
-$(this).siblings().removeClass("activeX")
+    $("#loding").fadeOut(2000)
+    $("body ,html").css("overflow","auto")
+    
+
+
+$("nav li a").click(function(){
+    let href=$(this).attr("href")
+    $("body,html").animate({scrollTop:$(href).offset().top},2000);
+    $("nav li a").removeClass("active");
+    $(this).addClass("active")
 })
-$(".tab ul li a ").click(function(){
-	let filter=$(this).attr("data-filter");
-	if(filter=="all")
-	{
-		$(".filter").slideDown(1000);
-	}
-	else
-	{
-		$(".filter").not("."+filter).slideUp(1000);
-		$(".filter").filter("."+filter).slideDown(1000);
-		
-	}
+$(window).scroll(function(){
+    let scr=$(window).scrollTop();
+    if(scr>100)
+    {
+        $("nav").addClass("nav-scroll");
+        $("#up").fadeIn(200);
+    }
+    else
+    {
+        $("#up").fadeOut(200);
+        $("nav").removeClass("nav-scroll");
+    }
 })
+
+$("#up").click(function(){
+    $("body,html").animate({scrollTop:"0px"},2000)
+})
+
+
+let skills=document.querySelector(".our-skills")
+window.onscroll=function(){
+    skillsoffsettop=skills.offsetTop;
+    skillshight=skills.offsetHeight;
+    let windohight=this.innerHeight;
+    let windooffset=this.pageYOffset;
+if(windooffset>skillsoffsettop+skillshight-windohight)
+{
+    let skills_spans=document.querySelectorAll(".progress-bar")
+skills_spans.forEach(span => {
+    span.style.width=span.dataset.prog;
+    
+});
+}
+}
+
+
 $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 3
-            }
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: true,
+    smartSpeed: 1000,
+    autoplay:false,
+    autoplayTimeout:9000,
+    autoplayHoverPause:true,
+    navText: [
+        "<i class='icofont-simple-left'></i>",
+        "<i class='icofont-simple-right'></i>"
+    ],    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 2
+        },
+        800: {
+            items: 3
+        },
+        1000: {
+            items: 4
         }
-    })
-	$("#username").keyup(function(){
-		var rgx=/^[A-Z][a-z]{4,25}$/;
-	if(rgx.test($(this).val())==false)
-	{
-		$(this).attr("class","form-control is-invalid")
-		$(this).next().fadeIn(100);
-	
-	}
-	else{
-		$(this).next().fadeOut(100);
-		$(this).attr("class","form-control is-valid")
-	}
-	})
-	
-	
-	$("#mail").keyup(function(){
-		var rgx=/^[a-zA-Z0-9]{3,}@[a-zA-Z]{3,}[.]{1}(com|in|...)$/;
-	if(rgx.test($(this).val())==false)
-	{
-		$(this).attr("class","form-control is-invalid")
-		$(this).next().fadeIn(100);
-	
-	}
-	else{
-		$(this).next().fadeOut(100);
-		$(this).attr("class","form-control is-valid")
-	}
-	})
-	
-	
-	
-	$("#phone").keyup(function(){
-		var rgx2=/^(01)[0125][0-9]{8}$/;
-	if(rgx2.test($(this).val())==false)
-	{
-		$(this).attr("class","form-control is-invalid")
-		$(this).next().fadeIn(100);
-	
-	}
-	else{
-		$(this).next().fadeOut(100);
-		$(this).attr("class","form-control is-valid")
-	}
-	})
-
-	$("#bars").click(function () {
-		let navwidth=$(".side-nav").css("left")
-		if(navwidth<"0px")
-		{
-			$(".side-nav").animate({ left: "0%" }, 1000);
-			$("#bars").animate({ left: "50%" }, 1000);
-			navwidth=0;
-		}
-		else
-		{
-			$(".side-nav").animate({ left: "-50%" }, 1000);
-            $("#bars").animate({ left: "0%" }, 1000);
-			navwidth=0;
-		}
-	})
-$(".side-nav .nav-links ul li a ").click(function(){
-	let href=$(this).attr("href");
-	$("body,html").animate({scrollTop:$(href).offset().top},1000)
-	$(".side-nav .nav-links ul li a ").removeClass("active")
-	$(this).addClass("active")
+    }
 })
+
+$("#username").keyup(function(){
+    var rgx=/^[A-Z][a-z]{4,25}$/;
+if(rgx.test($(this).val())==false)
+{
+    $(this).attr("class","form-control is-invalid")
+    $(this).next().fadeIn(100);
+
+}
+else{
+    $(this).next().fadeOut(100);
+    $(this).attr("class","form-control is-valid")
+}
+})
+
+
+
+AOS.init({
+    duration:1000
+});
+
+});
