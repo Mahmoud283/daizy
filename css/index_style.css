@@ -522,6 +522,12 @@ footer .copyright-text a{
 }
 @media(max-width:767px)
 {
+   
+    nav
+    {
+        background-color: #141313;
+        color: #d8d8d8;
+    }
     .home-caption h1{
         font-size: 30px;
         font-weight: 700;

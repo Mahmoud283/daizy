@@ -47,33 +47,28 @@ skills_spans.forEach(span => {
 }
 
 
-$('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: false,
-    dots: true,
-    smartSpeed: 1000,
-    autoplay:false,
-    autoplayTimeout:9000,
+$(".owl-carousel").owlCarousel({
+    loop:true,
+    center: true,
+    nav:true,
+    dots:true,
+    autoplay:true,
     autoplayHoverPause:true,
-    navText: [
-        "<i class='icofont-simple-left'></i>",
-        "<i class='icofont-simple-right'></i>"
-    ],    responsive: {
-        0: {
-            items: 1
+    autoplayTimeout:2000,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+     responsive:{
+        0:{
+            items:1
         },
-        600: {
-            items: 2
+        600:{
+            items:1
         },
-        800: {
-            items: 3
-        },
-        1000: {
-            items: 4
+        1000:{
+            items:1
         }
-    }
-})
+    }   
+});
+
 
 $("#username").keyup(function(){
     var rgx=/^[A-Z][a-z]{4,25}$/;
